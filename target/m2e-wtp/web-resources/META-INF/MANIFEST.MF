@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: IAndrade
+Build-Jdk: 1.8.0_65
+Implementation-Title: Soares de andrade Advogados
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: br.com.soaresdeandrade
+Implementation-Vendor: Pivotal Software, Inc.
+Created-By: Maven Integration for Eclipse
+
