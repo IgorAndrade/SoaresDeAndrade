@@ -24,4 +24,8 @@ public class HomeController {
 		Page<Noticia> noticias = noticiaRepository.findAll(request);
 		return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
 	}
+	@RequestMapping(value = "/teste", method = RequestMethod.GET)
+	public String teste(Principal principal) {
+		return "fragments/header";
+	}
 }
