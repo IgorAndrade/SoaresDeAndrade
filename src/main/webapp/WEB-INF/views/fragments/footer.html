@@ -1,12 +1,81 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-</head>
-<body>
-    <div th:fragment="footer" th:align="center">
-        &copy; 2015 Footer <span th:text="${@environment.getProperty('app.version')}"></span>
-    </div>
-</body>
-</html>
+	<footer th:fragment="footer">
 
+
+
+		<!-- footer content -->
+		<div class="footer-content">
+			<div class="container">
+
+				<div class="row">
+
+
+					<!-- FOOTER CONTACT INFO -->
+					<div class="column col-md-4">
+						<h3>Contato</h3>
+
+						<address class="font-opensans">
+							<ul>
+								<li class="footer-sprite address">[[#{contato.endereco}]] <br/>[[#{contato.cep}]]
+								</li>
+								<li class="footer-sprite phone">Tel: [[#{contato.tel1}]], [[#{contato.tel2}]]</li>
+								<li class="footer-sprite email"><a
+									href="mailto:support@yourname.com" th:text="#{contato.email}">support@yourname.com</a></li>
+							</ul>
+						</address>
+
+					</div>
+					<!-- /FOOTER CONTACT INFO -->
+
+
+					<!-- FOOTER LOGO -->
+					<div class="column logo col-md-4 text-center">
+						<div class="logo-content">
+							<img class="animate_fade_in" th:src="@{/resources/images/icon_trans.png}"
+								width="200" alt="" />
+							<h4>[[#{app.name}]]</h4>
+						</div>
+					</div>
+					<!-- /FOOTER LOGO -->
+
+
+					<!-- FOOTER LATEST POSTS -->
+					<div class="column col-md-4 text-right">
+						<h3>RECENT POSTS</h3>
+
+						<div class="post-item">
+							<small>JANUARY 2, 2014 BY ADMIN</small>
+							<h3>
+								<a href="blog-post.html">Lorem ipsum dolor sit amet,
+									consectetur adipiscing elit</a>
+							</h3>
+						</div>
+						<div class="post-item">
+							<small>JANUARY 2, 2014 BY ADMIN</small>
+							<h3>
+								<a href="blog-post.html">Lorem ipsum dolor sit amet,
+									consectetur adipiscing elit</a>
+							</h3>
+						</div>
+						<div class="post-item">
+							<small>JANUARY 2, 2014 BY ADMIN</small>
+							<h3>
+								<a href="blog-post.html">Lorem ipsum dolor sit amet,
+									consectetur adipiscing elit</a>
+							</h3>
+						</div>
+
+						<a href="blog-masonry-sidebar.html" class="view-more pull-right">View
+							Blog <i class="fa fa-arrow-right"></i>
+						</a>
+
+					</div>
+					<!-- /FOOTER LATEST POSTS -->
+
+				</div>
+
+			</div>
+		</div>
+		<!-- footer content -->
+
+	</footer>
+	<!-- /FOOTER -->

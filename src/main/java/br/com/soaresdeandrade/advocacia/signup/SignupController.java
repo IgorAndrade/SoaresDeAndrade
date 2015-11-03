@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.soaresdeandrade.advocacia.account.*;
+import br.com.soaresdeandrade.advocacia.service.UserService;
 import br.com.soaresdeandrade.advocacia.support.web.*;
 
 @Controller

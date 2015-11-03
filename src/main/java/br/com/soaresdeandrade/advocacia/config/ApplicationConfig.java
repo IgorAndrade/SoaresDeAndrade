@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import br.com.soaresdeandrade.advocacia.Application;
 
 @Configuration
-@PropertySource(name="propiedades",value={"classpath:persistence${br.com.soaresdeandrade.modo}.properties"})
+@PropertySource(value={"classpath:persistence${br.com.soaresdeandrade.modo}.properties","classpath:erros.properties"})
 @ComponentScan(basePackageClasses = Application.class, excludeFilters = @Filter({Controller.class, Configuration.class}))
 class ApplicationConfig {
 

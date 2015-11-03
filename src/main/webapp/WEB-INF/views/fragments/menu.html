@@ -1,0 +1,32 @@
+
+<!-- Top Nav -->
+<div class="navbar-collapse nav-main-collapse collapse pull-right"
+	th:fragment="menu" >
+	<nav class="nav-main mega-menu">
+		<ul class="nav nav-pills nav-main scroll-menu" id="topMain">
+			<li class="dropdown"><a class="dropdown-toggle" href="#" >
+					[[#{menu.home}]] </a></li>
+			<li class="dropdown"><a
+				class="dropdown-toggle" href="#" > [[#{menu.cadastro}]] <i
+					class="fa fa-angle-down"></i>
+			</a>
+				<ul class="dropdown-menu">
+
+					<li><a th:href="@{/usuarios}"><i class="fa fa-user"></i>
+							[[#{menu.cadastro.usuario}]]</a></li>
+					<li><a th:href="@{/perfis}"><i class="fa fa-tags"></i>
+							[[#{menu.cadastro.perfil}]]</a></li>
+
+				</ul></li>
+
+			<li class="dropdown"><a class="dropdown-toggle" href="#"> <b>[[#{menu.aplicativo}]]</b>
+					<i class="fa fa-angle-down"></i>
+			</a>
+				<ul class="dropdown-menu">
+					<li><a href="magazine-home.html"><i class="fa fa-comments"></i>[[#{menu.aplicativo.noticia}]]</a></li>
+					<li><a href="magazine-category.html"><i class="fa fa-picture-o"></i>[[#{menu.aplicativo.fotos}]]</a></li>
+				</ul></li>
+		</ul>
+	</nav>
+</div>
+<!-- /Top Nav -->

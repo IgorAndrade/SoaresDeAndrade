@@ -1,4 +1,4 @@
-package br.com.soaresdeandrade.advocacia.noticia;
+package br.com.soaresdeandrade.advocacia.model.noticia;
 
 import java.io.Serializable;
 import java.util.Date;

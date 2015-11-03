@@ -18,6 +18,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
+import org.springframework.util.StringUtils;
 
 import br.com.soaresdeandrade.advocacia.Application;
 
@@ -58,6 +59,8 @@ class JpaConfig implements TransactionManagementConfigurer {
     @Bean(name={"entityManagerFactory"})
     public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
     	String modoProperties = System.getProperty("br.com.soaresdeandrade.modo");
+    	if(StringUtils.isEmpty(modoProperties))
+    		return getTeste();
     	Modo modo = Modo.valueOf(modoProperties);
     	switch (modo) {
 		case DEV:
