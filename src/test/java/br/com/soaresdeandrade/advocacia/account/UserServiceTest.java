@@ -1,14 +1,11 @@
 package br.com.soaresdeandrade.advocacia.account;
 
 import static org.assertj.core.api.StrictAssertions.assertThat;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.hamcrest.Matchers.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.Rule;
@@ -21,6 +18,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import br.com.soaresdeandrade.advocacia.service.UserService;
 

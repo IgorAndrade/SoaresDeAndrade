@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
+import br.com.soaresdeandrade.advocacia.error.RN;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -14,9 +19,13 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue
 	private Long id;
+	@NotBlank(message="erro.usuario.nome.null")
 	private String nome;
+	@NotBlank(message="erro.usuario.email.null")
+	@Email(message="erro.usuario.email.invalido")
 	private String email;
 	@JsonIgnore
+	@NotBlank(message="erro.usuario.senha")
 	private String password;
 	
 	
