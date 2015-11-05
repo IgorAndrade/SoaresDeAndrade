@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
@@ -47,8 +48,7 @@ class JpaConfig implements TransactionManagementConfigurer {
         return new HikariDataSource(config);
     }
     
-    @Bean
-    @Named("JNDI")
+    @Bean(name={"JNDI"})
     public DataSource dataSourceJNDI() {
     	  final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
           dsLookup.setResourceRef(true);
@@ -56,7 +56,7 @@ class JpaConfig implements TransactionManagementConfigurer {
           return dataSource;
     }
 
-    @Bean(name={"entityManagerFactory"})
+    @Bean(name={"entityManagerFactory"}) 
     public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
     	String modoProperties = System.getProperty("br.com.soaresdeandrade.modo");
     	if(StringUtils.isEmpty(modoProperties))
@@ -72,7 +72,7 @@ class JpaConfig implements TransactionManagementConfigurer {
 		}
         
     }
-
+   
 	private LocalContainerEntityManagerFactoryBean getTeste() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(configureDataSource());

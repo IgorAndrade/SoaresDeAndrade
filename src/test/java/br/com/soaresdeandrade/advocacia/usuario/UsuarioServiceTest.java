@@ -1,6 +1,6 @@
 package br.com.soaresdeandrade.advocacia.usuario;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.never;
@@ -17,14 +17,6 @@ import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.stereotype.Controller;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-
-import br.com.soaresdeandrade.advocacia.Application;
 import br.com.soaresdeandrade.advocacia.error.RN;
 import br.com.soaresdeandrade.advocacia.error.RNException;
 import br.com.soaresdeandrade.advocacia.model.usuario.Usuario;
@@ -32,13 +24,12 @@ import br.com.soaresdeandrade.advocacia.repository.UsuarioRepository;
 import br.com.soaresdeandrade.advocacia.service.UsuarioService;
 import br.com.soaresdeandrade.advocacia.service.UsuarioServiceImpl;
 @RunWith(MockitoJUnitRunner.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class })
-@ComponentScan(basePackageClasses = Application.class, excludeFilters = @Filter({
-	Controller.class, Configuration.class }))
 public class UsuarioServiceTest {
 	
 	@InjectMocks
 	private UsuarioService service = new UsuarioServiceImpl();
+	@Autowired
+	private UsuarioService service2 ;
 	@Mock
 	private UsuarioRepository repositoryMock;
 	@Spy
