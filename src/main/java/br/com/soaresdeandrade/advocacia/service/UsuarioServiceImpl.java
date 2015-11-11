@@ -9,11 +9,12 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import br.com.soaresdeandrade.advocacia.error.RN;
 import br.com.soaresdeandrade.advocacia.error.RNException;
-import br.com.soaresdeandrade.advocacia.model.usuario.Usuario;
+import br.com.soaresdeandrade.advocacia.model.Usuario;
 import br.com.soaresdeandrade.advocacia.repository.UsuarioRepository;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -35,6 +36,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
+	@Secured("cad_user")
 	public List<Usuario> ListarTodos() {
 		return repository.findAll();
 	}

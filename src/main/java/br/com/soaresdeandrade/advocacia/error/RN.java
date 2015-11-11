@@ -4,7 +4,8 @@ public enum RN {
 	EMAIL_NULL("erro.usuario.email.null"),
 	EMAIL_INVALIDO("erro.usuario.email.invalido"),
 	NOME_NULL("erro.usuario.nome.null"),
-	SENHA_NULL("erro.usuario.senha");
+	SENHA_NULL("erro.usuario.senha"),
+	USER_NOT_FOUND("erro.usuario.naoencontrado");
 	
 	private String msg;
 	

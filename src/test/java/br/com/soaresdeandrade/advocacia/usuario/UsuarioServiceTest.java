@@ -17,9 +17,10 @@ import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
 import br.com.soaresdeandrade.advocacia.error.RN;
 import br.com.soaresdeandrade.advocacia.error.RNException;
-import br.com.soaresdeandrade.advocacia.model.usuario.Usuario;
+import br.com.soaresdeandrade.advocacia.model.Usuario;
 import br.com.soaresdeandrade.advocacia.repository.UsuarioRepository;
 import br.com.soaresdeandrade.advocacia.service.UsuarioService;
 import br.com.soaresdeandrade.advocacia.service.UsuarioServiceImpl;

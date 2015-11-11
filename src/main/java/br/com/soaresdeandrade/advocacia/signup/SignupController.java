@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.soaresdeandrade.advocacia.account.*;
-import br.com.soaresdeandrade.advocacia.service.UserService;
+import br.com.soaresdeandrade.advocacia.service.LoginService;
 import br.com.soaresdeandrade.advocacia.support.web.*;
 
 @Controller
@@ -22,7 +22,7 @@ public class SignupController {
 	private AccountRepository accountRepository;
 	
 	@Autowired
-	private UserService userService;
+	private LoginService userService;
 	
 	@RequestMapping(value = "signup")
 	public String signup(Model model) {
@@ -36,9 +36,9 @@ public class SignupController {
 			return SIGNUP_VIEW_NAME;
 		}
 		Account account = accountRepository.save(signupForm.createAccount());
-		userService.signin(account);
+	//	userService.signin(account);
         // see /WEB-INF/i18n/messages.properties and /WEB-INF/views/homeSignedIn.html
-        MessageHelper.addSuccessAttribute(ra, "signup.success");
+        MessageHelper.addErrorAttribute(ra, "menu.cadastro");
 		return "redirect:/";
 	}
 }

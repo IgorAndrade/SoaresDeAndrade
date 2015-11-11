@@ -3,7 +3,7 @@ package br.com.soaresdeandrade.advocacia.service;
 import java.util.List;
 
 import br.com.soaresdeandrade.advocacia.error.RNException;
-import br.com.soaresdeandrade.advocacia.model.usuario.Usuario;
+import br.com.soaresdeandrade.advocacia.model.Usuario;
 
 public interface UsuarioService {
 

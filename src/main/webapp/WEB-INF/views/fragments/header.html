@@ -95,7 +95,7 @@
 			<th:block th:if="${message != null}">
 				<!-- /* The message code is returned from the @Controller */ -->
 				<div
-					th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+					th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=${#messages.msgWithParams(message.message, message.args)})">&nbsp;</div>
 			</th:block>
 			<!-- PAGE TITLE -->
 			<header id="page-title">

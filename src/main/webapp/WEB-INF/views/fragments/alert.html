@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
 </head>
 <body>
-    <div th:fragment="alert (type, message)" class="alert alert-dismissable" th:classappend="'alert-' + ${type}">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <span th:text="${message}">Test</span>
-    </div>
+	<div th:fragment="alert (type, message)" th:switch="${type}" 
+		class="alert alert-dismissable" th:classappend="'alert-' + ${type}">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-hidden="true">&times;</button>
+			<i class="fa fa-frown-o" th:case="'danger'"></i>
+			<i class="fa fa-info" th:case="'info'"></i>
+			<i class="fa fa-check-circle" th:case="'success'"></i>
+		<span th:text="${message}">Test</span>
+	</div>
 </body>
 </html>

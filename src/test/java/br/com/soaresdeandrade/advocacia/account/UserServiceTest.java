@@ -22,13 +22,13 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import br.com.soaresdeandrade.advocacia.service.UserService;
+import br.com.soaresdeandrade.advocacia.service.LoginService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
 	@InjectMocks
-	private UserService userService = new UserService();
+	private LoginService userService = new LoginService();
 
 	@Mock
 	private AccountRepository accountRepositoryMock;
@@ -36,13 +36,6 @@ public class UserServiceTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-	@Test
-	public void shouldInitializeWithTwoDemoUsers() {
-		// act
-		userService.initialize();
-		// assert
-		verify(accountRepositoryMock, never()).save(any(Account.class));
-	}
 
 	@Test
 	public void shouldThrowExceptionWhenUserNotFound() {

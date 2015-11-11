@@ -1,15 +1,18 @@
-package br.com.soaresdeandrade.advocacia.model.usuario;
+package br.com.soaresdeandrade.advocacia.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-
-import br.com.soaresdeandrade.advocacia.error.RN;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,10 +26,15 @@ public class Usuario implements Serializable{
 	private String nome;
 	@NotBlank(message="erro.usuario.email.null")
 	@Email(message="erro.usuario.email.invalido")
+	@Column(unique=true,nullable=false)
 	private String email;
 	@JsonIgnore
 	@NotBlank(message="erro.usuario.senha")
 	private String password;
+	
+	@ManyToMany
+	 @JoinTable(name = "Usuario_Pefill", joinColumns = @JoinColumn(name = "usuarioID"), inverseJoinColumns = @JoinColumn(name = "perfilId",unique=false))
+	private List<Perfil> perfis;
 	
 	
 	public Long getId() {
@@ -52,6 +60,12 @@ public class Usuario implements Serializable{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public List<Perfil> getPerfis() {
+		return perfis;
+	}
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
 	}
 	
 }
