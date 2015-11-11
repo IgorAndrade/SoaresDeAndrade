@@ -83,12 +83,10 @@ class JpaConfig implements TransactionManagementConfigurer {
         jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, env.getProperty("hibernate.dialect"));
         jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, env.getProperty("hibernate.hbm2ddl.auto"));
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
-
         return entityManagerFactoryBean;
 	}
 	private LocalContainerEntityManagerFactoryBean getDev() {
 		 LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-//		 entityManagerFactoryBean.setDataSource(configureDataSource());
 	       entityManagerFactoryBean.setPackagesToScan("br.com.soaresdeandrade.advocacia");
 	        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 	        entityManagerFactoryBean.setPersistenceUnitName("persistenceUnit");

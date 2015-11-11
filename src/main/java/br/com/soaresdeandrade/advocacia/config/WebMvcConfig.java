@@ -35,6 +35,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     private static final String MESSAGE_SOURCE = "/WEB-INF/i18n/messages";
     private static final String APP_SOURCE = "classpath:application";
     private static final String MENU_SOURCE = "classpath:menu";
+    private static final String ERRO_SOURCE = "classpath:erros";
     private static final String LABELS_SOURCE = "classpath:labels";
     private static final String VIEWS = "/WEB-INF/views/";
 
@@ -57,7 +58,7 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames(MESSAGE_SOURCE,APP_SOURCE,MENU_SOURCE,LABELS_SOURCE);
+        messageSource.setBasenames(MESSAGE_SOURCE,APP_SOURCE,MENU_SOURCE,LABELS_SOURCE,ERRO_SOURCE);
         messageSource.setCacheSeconds(5);
         return messageSource;
     }
