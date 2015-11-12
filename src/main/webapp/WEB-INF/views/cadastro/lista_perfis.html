@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="fragments/header">
+<head>
+<title>[[#{form.usuario.titulo}]]</title>
+</head>
+<body>
+	<h1 layout:fragment="pgname" th:text="#{menu.home}">Home</h1>
+	<ul class="breadcrumb" layout:fragment="breadcrumb">
+	</ul>
+	<section class="container" layout:fragment="content">
+	<span sec:authentication="principal.authorities"></span>
+	<div sec:authorize="hasRole('CAD')">
+      You are authorized user! Hi, <span sec:authentication="name">Username</span>
+  </div>
+	</section>
+</body>
+</html>

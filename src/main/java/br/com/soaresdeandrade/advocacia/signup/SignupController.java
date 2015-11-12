@@ -3,6 +3,7 @@ package br.com.soaresdeandrade.advocacia.signup;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,8 +22,9 @@ public class SignupController {
 	@Autowired
 	private AccountRepository accountRepository;
 	
-	@Autowired
-	private LoginService userService;
+//	@Autowired 
+//	@Qualifier("login")
+//	private LoginService userService;
 	
 	@RequestMapping(value = "signup")
 	public String signup(Model model) {

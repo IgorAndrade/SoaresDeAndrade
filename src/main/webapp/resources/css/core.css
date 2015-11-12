@@ -21,3 +21,8 @@ body {
 .titulo{
 	font-size: 20px;	
 }
+
+:not(form)>.alert {
+	position: relative;
+	top:-40px;
+}

@@ -5,17 +5,18 @@ import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.soaresdeandrade.advocacia.error.RN;
 import br.com.soaresdeandrade.advocacia.error.RNException;
 import br.com.soaresdeandrade.advocacia.model.Usuario;
 import br.com.soaresdeandrade.advocacia.repository.UsuarioRepository;
+
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
@@ -24,6 +25,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private Validator validator;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@Override
 	public Usuario findByEmail(String email) {
@@ -43,7 +46,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Long salvar(Usuario usuario) throws RNException {
-		
+
 		Set<ConstraintViolation<Usuario>> validate = validator
 				.validate(usuario);
 		if (!validate.isEmpty()) {
@@ -54,7 +57,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new RNException(rns.toArray(new RN[rns.size()]));
 
 		}
-		return repository.save(usuario).getId();
+		try {
+			usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+			return repository.save(usuario).getId();
+
+		} catch (Exception ex) {
+			throw new RNException(RN.USER_REPETIDO);
+		}
 	}
 
 	@Override

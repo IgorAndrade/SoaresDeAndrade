@@ -4,7 +4,7 @@
 	th:fragment="menu" >
 	<nav class="nav-main mega-menu">
 		<ul class="nav nav-pills nav-main scroll-menu" id="topMain">
-			<li class="dropdown"><a class="dropdown-toggle" href="#" >
+			<li class="dropdown"><a  th:href="@{/}" >
 					[[#{menu.home}]] </a></li>
 			<li class="dropdown"><a
 				class="dropdown-toggle" href="#" > [[#{menu.cadastro}]] <i
@@ -12,9 +12,9 @@
 			</a>
 				<ul class="dropdown-menu">
 
-					<li><a th:href="@{/usuario}"><i class="fa fa-user"></i>
+					<li><a th:href="@{/usuario/novo}"><i class="fa fa-user"></i>
 							[[#{menu.cadastro.usuario}]]</a></li>
-					<li><a th:href="@{/perfis}"><i class="fa fa-tags"></i>
+					<li><a th:href="@{/perfil/novo}"><i class="fa fa-tags"></i>
 							[[#{menu.cadastro.perfil}]]</a></li>
 
 				</ul></li>

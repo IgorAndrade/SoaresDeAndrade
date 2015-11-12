@@ -56,6 +56,7 @@ public class LoginService implements UserDetailsService {
 
 	private List<GrantedAuthority> createAuthoritys(Usuario usuario) {
 		List<GrantedAuthority> grantedAuthority = new ArrayList<GrantedAuthority>();
+		grantedAuthority.add(new SimpleGrantedAuthority(Permissoes.USUARIO.getPermissao()));
 		for(Perfil perfil : usuario.getPerfis()){
 			for(Permissoes permissao: perfil.getPermissoes()){
 				grantedAuthority.add(new SimpleGrantedAuthority(permissao.getPermissao()));

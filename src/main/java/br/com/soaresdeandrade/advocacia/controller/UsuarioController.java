@@ -52,7 +52,7 @@ public class UsuarioController {
 		}
 		try {
 			service.salvar(usuario);
-			MessageHelper.addSuccessAttribute(ra, "form.cadastro.sucesso", usuario.getNome(),usuario.getEmail());
+			MessageHelper.addSuccessAttribute(ra, "form.cadastro.usuario.sucesso", usuario.getNome(),usuario.getEmail());
 			return "redirect:/usuario";
 		} catch (RNException e) {
 			for(RN rn: e.getRn()){

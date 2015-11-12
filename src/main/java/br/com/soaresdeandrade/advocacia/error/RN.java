@@ -5,6 +5,7 @@ public enum RN {
 	EMAIL_INVALIDO("erro.usuario.email.invalido"),
 	NOME_NULL("erro.usuario.nome.null"),
 	SENHA_NULL("erro.usuario.senha"),
+	USER_REPETIDO("erro.usuario.email.repetido"),
 	USER_NOT_FOUND("erro.usuario.naoencontrado");
 	
 	private String msg;

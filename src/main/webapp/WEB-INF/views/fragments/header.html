@@ -52,9 +52,8 @@
 <!-- /styleswitcher - demo only -->
 
 <!-- STYLESWITCHER - REMOVE ON PRODUCTION/DEVELOPMENT -->
-<link href="teste"
-	th:href="@{/resources/css/core.css}"
-	rel="stylesheet" type="text/css" />
+<link href="teste" th:href="@{/resources/css/core.css}" rel="stylesheet"
+	type="text/css" />
 
 <!-- Morenizr -->
 <script type="text/javascript" src="assets/plugins/modernizr.min.js"
@@ -92,11 +91,10 @@
 	<div id="wrapper">
 
 		<div id="blog">
-			<th:block th:if="${message != null}">
-				<!-- /* The message code is returned from the @Controller */ -->
-				<div
-					th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=${#messages.msgWithParams(message.message, message.args)})">&nbsp;</div>
-			</th:block>
+			<!-- 			<th:block th:if="${message != null}"> -->
+			<!-- 				<div -->
+			<!-- 					th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=${#messages.msgWithParams(message.message, message.args)})">&nbsp;</div> -->
+			<!-- 			</th:block> -->
 			<!-- PAGE TITLE -->
 			<header id="page-title">
 				<div class="container">
@@ -107,16 +105,19 @@
 					</ul>
 				</div>
 			</header>
+			<th:block th:if="${message != null}">
+				<div
+					th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=${#messages.msgWithParams(message.message, message.args)})">&nbsp;</div>
+			</th:block>
 
 
-			<section class="container" layout:fragment="content">
-			</section>
+			<section class="container" layout:fragment="content"></section>
 
 		</div>
 	</div>
 	<!-- /WRAPPER -->
 
-	<footer th:replace="fragments/footer :: footer"></footer> 
+	<footer th:replace="fragments/footer :: footer"></footer>
 
 	<!-- JAVASCRIPT FILES -->
 	<script type="text/javascript" src="assets/plugins/jquery-2.0.3.min.js"

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="fragments/header">
+<head>
+<title>[[#{form.perfil.titulo.mine}]]</title>
+</head>
+<body>
+	<h1 layout:fragment="pgname" th:text="#{form.perfil.titulo}"></h1>
+	<ul class="breadcrumb" layout:fragment="breadcrumb">
+		<li><a href="#" th:href="@{/}" th:text="#{menu.home}">Home</a></li>
+		<li><a href="#" th:href="@{/perfil}"
+			th:text="#{form.perfil.lista}">Home</a></li>
+		<li class="active">[[#{form.perfil.titulo.mine}]]</li>
+	</ul>
+	<section class="container" layout:fragment="content">
+		<div class="row">
+
+			<!-- Cadastro -->
+			<div class="col">
+				<form class="white-row" th:action="@{/perfil/salvar}"
+					th:object="${perfil}" method="post">
+
+					<!-- alert failed -->
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+						<p th:each="err : ${#fields.errors('*')}">
+							<i class="fa fa-frown-o"></i> [[#{${err}}]]
+						</p>
+					</div>
+
+					<div class="row">
+						<div class="form-group">
+							<div class="col">
+								<label th:text="#{form.perfil.nome}"></label> <input
+									type="text" th:field="*{nome}" class="form-control" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group">
+						<div class="col-xs-6 col-sm-4 col-md-3" th:each="per : ${permissoes}">
+						<input type="checkbox" 
+										th:field="*{permissoes}" th:value="${per}" />
+										<label
+										th:for="${#ids.prev('permissoes')}"
+										th:text="#{'PERMISSAO.'+${per.nome}}"></label>
+						</div>
+<!-- 							<div class="col"> -->
+<!-- 								<ul> -->
+<!-- 									<li th:each="per : ${permissoes}"> -->
+<!-- 									<input type="checkbox" -->
+<!-- 										th:field="*{permissoes}" th:value="${per}" /> -->
+<!-- 										<label -->
+<!-- 										th:for="${#ids.prev('permissoes')}" -->
+<!-- 										th:text="#{'PERMISSAO.'+${per.nome}}"></label> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<!-- 							</div> -->
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<input type="submit" th:value="#{btn.salvar}"
+								class="btn btn-primary pull-right push-bottom"
+								data-loading-text="Loading..." />
+						</div>
+					</div>
+
+				</form>
+
+			</div>
+			<!-- /REGISTER -->
+
+		</div>
+	</section>
+</body>
+</html>
