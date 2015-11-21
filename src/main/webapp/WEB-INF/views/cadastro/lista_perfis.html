@@ -9,10 +9,51 @@
 	<ul class="breadcrumb" layout:fragment="breadcrumb">
 	</ul>
 	<section class="container" layout:fragment="content">
-	<span sec:authentication="principal.authorities"></span>
-	<div sec:authorize="hasRole('CAD')">
-      You are authorized user! Hi, <span sec:authentication="name">Username</span>
-  </div>
+		<div class="row">
+
+			<!-- Cadastro -->
+			<div class="col">
+				<table id="tabela"></table>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var table = $('#tabela').DataTable( {
+				"processing" : true,
+			    "ajax": 'http://localhost:8080/advocacia/perfil/rest/listar',
+                "type": 'GET',
+                "order" : [ [ 0, 'asc' ] ],
+                "lengthMenu" : [ 5,10, 15, 20 ],
+                "columns" : [
+							{
+								data : "nome",
+								title : "Perfil",
+								defaultContent : ""
+							},
+							{
+								data : "permissoes",
+								title : "Permissões",
+								defaultContent : ""
+							}
+                ],
+                "language" : {
+    				"lengthMenu" : "Mostrar _MENU_ itens por página",
+    				"zeroRecords" : "Nenhum item encontrado",
+    				"info" : "_PAGE_ de _PAGES_ página(s) de _TOTAL_ itens",
+    				"infoEmpty" : "Nenhum item disponível",
+    				//"infoFiltered" : "(filtrado de _MAX_ itens)",
+    				"infoFiltered" : "",
+    				"processing" : "Carregando...",
+    				"paginate" : {
+    					"first" : "Primeira Página",
+    					"last" : "Última página",
+    					"next" : "Próxima",
+    					"previous" : "Anterior"
+    				},
+    				"search" : "Filtrar"
+    			},
+			} );
+		
+		</script>
 	</section>
 </body>
 </html>

@@ -6,17 +6,21 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.soaresdeandrade.advocacia.error.RN;
 import br.com.soaresdeandrade.advocacia.error.RNException;
+import br.com.soaresdeandrade.advocacia.model.Perfil;
 import br.com.soaresdeandrade.advocacia.model.Usuario;
 import br.com.soaresdeandrade.advocacia.service.UsuarioService;
 import br.com.soaresdeandrade.advocacia.support.web.MessageHelper;
@@ -60,5 +64,16 @@ public class UsuarioController {
 			}
 			return USUARIO;
 		}
+	}
+	
+	@RequestMapping(value = "/rest/listar", method = RequestMethod.GET,produces="application/json")
+	@ResponseBody
+	public ResponseEntity<DataTableVO<Usuario>> getRestLista(){
+		List<Usuario> listarTodos = service.ListarTodos();
+		DataTableVO<Usuario> dataTableVO = new DataTableVO<Usuario>() {
+		};
+		dataTableVO.setData(listarTodos);
+		ResponseEntity<DataTableVO<Usuario>> resposta = new ResponseEntity<DataTableVO<Usuario>>(dataTableVO,HttpStatus.OK); 
+		return resposta;
 	}
 }

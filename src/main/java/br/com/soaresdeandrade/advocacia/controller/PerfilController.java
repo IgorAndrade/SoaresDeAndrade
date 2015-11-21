@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,12 +15,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.soaresdeandrade.advocacia.model.Perfil;
 import br.com.soaresdeandrade.advocacia.model.Permissoes;
 import br.com.soaresdeandrade.advocacia.repository.PerfilRepository;
+import br.com.soaresdeandrade.advocacia.service.PerfilServiceImpl;
 import br.com.soaresdeandrade.advocacia.support.web.MessageHelper;
 
 
@@ -29,6 +33,8 @@ public class PerfilController {
 	private static final String PERFIL = "cadastro/perfil";
 	@Autowired
 	private PerfilRepository repository;
+	@Autowired
+	public PerfilServiceImpl service;
 	
 	
 	@RequestMapping(value = {"","/","/listar"}, method = RequestMethod.GET)
@@ -64,14 +70,25 @@ public class PerfilController {
 		}
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "editar/{id}", method = RequestMethod.GET)
 	public ModelAndView editar(@PathVariable("id") Long id){
 		ModelAndView modelAndView = new ModelAndView(PERFIL);
+//		Perfil perfil = service.getPerfilById(id);
 		Perfil perfil = repository.getOne(id);
 		modelAndView.addObject("perfil", perfil);
 		Permissoes[] permissoes = Permissoes.values();
 		modelAndView.addObject("permissoes", permissoes);
 		return modelAndView;
+	}
+	@RequestMapping(value = "/rest/listar", method = RequestMethod.GET,produces="application/json")
+	@ResponseBody
+	public ResponseEntity<DataTableVO<Perfil>> getRestLista(){
+		List<Perfil> listarTodos = repository.findAll();
+		DataTableVO<Perfil> dataTableVO = new DataTableVO<Perfil>() {
+		};
+		dataTableVO.setData(listarTodos);
+		ResponseEntity<DataTableVO<Perfil>> resposta = new ResponseEntity<DataTableVO<Perfil>>(dataTableVO,HttpStatus.OK); 
+		return resposta;
 	}
 	
 }
