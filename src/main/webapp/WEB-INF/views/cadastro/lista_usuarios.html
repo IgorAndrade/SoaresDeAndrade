@@ -23,6 +23,7 @@
                 "type": 'GET',
                 "order" : [ [ 0, 'asc' ] ],
                 "lengthMenu" : [ 5,10, 15, 20 ],
+                "rowId":"id",
                 "columns" : [
 							{
 								data : "nome",
@@ -50,6 +51,11 @@
 					"previous" : "Anterior"
 				},
 				"search" : "Filtrar"
+			},
+			"createdRow" : function(row, data, index) {
+				$(row).click(function (){
+					window.location.href = "usuario/"+row.id;
+					});
 			}
 			} );
 		

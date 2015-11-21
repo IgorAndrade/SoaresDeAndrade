@@ -11,7 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,8 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.soaresdeandrade.advocacia.error.RN;
 import br.com.soaresdeandrade.advocacia.error.RNException;
-import br.com.soaresdeandrade.advocacia.model.Perfil;
 import br.com.soaresdeandrade.advocacia.model.Usuario;
+import br.com.soaresdeandrade.advocacia.service.PerfilServiceImpl;
 import br.com.soaresdeandrade.advocacia.service.UsuarioService;
 import br.com.soaresdeandrade.advocacia.support.web.MessageHelper;
 
@@ -33,6 +36,8 @@ public class UsuarioController {
 	private static final String USUARIO = "cadastro/usuario";
 	@Autowired
 	private UsuarioService service;
+	@Autowired
+	private PerfilServiceImpl perfilService;
 	
 	
 	@RequestMapping( method = RequestMethod.GET)
@@ -46,6 +51,7 @@ public class UsuarioController {
 	public ModelAndView novo(Principal principal) {
 		ModelAndView modelAndView = new ModelAndView(USUARIO);
 		modelAndView.addObject("usuario", new Usuario());
+		modelAndView.addObject("perfis", perfilService.listarTodos());
 		return modelAndView;
 	}
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST)
@@ -75,5 +81,14 @@ public class UsuarioController {
 		dataTableVO.setData(listarTodos);
 		ResponseEntity<DataTableVO<Usuario>> resposta = new ResponseEntity<DataTableVO<Usuario>>(dataTableVO,HttpStatus.OK); 
 		return resposta;
+	}
+	
+	@RequestMapping(value = {"editar/{id}","/{id}"}, method = RequestMethod.GET)
+	public ModelAndView editar(@PathVariable("id") Long id){
+		ModelAndView modelAndView = new ModelAndView(USUARIO);
+		Usuario usuario = service.findById(id);
+		modelAndView.addObject("usuario", usuario);
+		modelAndView.addObject("perfis", perfilService.listarTodos());
+		return modelAndView;
 	}
 }

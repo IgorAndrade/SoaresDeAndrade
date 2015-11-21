@@ -20,7 +20,7 @@
 
 				<form class="white-row" th:action="@{/usuario/salvar}"
 					th:object="${usuario}" method="post">
-
+<input type="hidden" th:field="*{id}"/>
 					<!-- alert failed -->
 					<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
 						<p th:each="err : ${#fields.errors('*')}">
@@ -53,6 +53,17 @@
 								<label>Password</label> <input type="password" th:field="*{password}"
 									class="form-control"/>
 							</div>
+						</div>
+					</div>
+						<div class="row">
+						<div class="form-group">
+						<div class="col-xs-6 col-sm-4 col-md-3" th:each="perfil : ${perfis}">
+						<input type="checkbox" 
+										th:field="*{perfis}" th:value="${perfil.id}" />
+										<label
+										th:for="${#ids.prev('perfis')}"
+										th:text="${perfil.nome}"></label>
+						</div>
 						</div>
 					</div>
 					<div class="row">

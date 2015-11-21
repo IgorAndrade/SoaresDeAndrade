@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ import br.com.soaresdeandrade.advocacia.support.web.MessageHelper;
 
 @Controller
 @RequestMapping(value = "/perfil")
-public class PerfilController {
+public class PerfilController  {
 	private static final String LISTA_PERFIS = "cadastro/lista_perfis";
 	private static final String PERFIL = "cadastro/perfil";
 	@Autowired
@@ -90,5 +91,6 @@ public class PerfilController {
 		ResponseEntity<DataTableVO<Perfil>> resposta = new ResponseEntity<DataTableVO<Perfil>>(dataTableVO,HttpStatus.OK); 
 		return resposta;
 	}
+	
 	
 }
