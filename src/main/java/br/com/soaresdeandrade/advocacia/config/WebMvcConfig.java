@@ -2,6 +2,7 @@ package br.com.soaresdeandrade.advocacia.config;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -20,12 +22,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.spring4.dialect.SpringStandardDialect;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 import br.com.soaresdeandrade.advocacia.Application;
+import br.com.soaresdeandrade.advocacia.service.PerfilServiceImpl;
 
 @Configuration
 @PropertySource("classpath:application.properties")
@@ -41,6 +43,8 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
 
     private static final String RESOURCES_LOCATION = "/resources/";
     private static final String RESOURCES_HANDLER = RESOURCES_LOCATION + "**";
+    @Autowired
+    private PerfilServiceImpl perfilService;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -116,5 +120,10 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         String favicon() {
             return "forward:/resources/images/favicon.ico";
         }
+    }
+    
+    @Autowired
+    public void configureConversionService(FormattingConversionService conversionService) {
+        conversionService.addConverter(perfilService);
     }
 }
